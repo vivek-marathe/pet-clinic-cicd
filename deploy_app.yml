@@ -1,0 +1,12 @@
+---
+- hosts: pet-clinic
+  remote_user: azure
+  become: yes
+  become_method: sudo
+  tasks:
+    - name: Run the container
+      docker_container:
+        name: petclinic
+        image: vivekmmarathe/spring-petclinic:latest
+        published_ports: 8090:8080
+        state: started
